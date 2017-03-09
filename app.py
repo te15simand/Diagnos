@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask("webapp")
 
@@ -11,6 +11,16 @@ def home():
 def index():
 	return render_template("contact.html")
 
+@app.route("/contact/sent/", methods=["GET", "POST"])
+def sent():
+	if request.method == "POST":
+		return "Tack!"
+	else:
+		return render_template("sent.html")
+
+
+
+
 if __name__ == "__main__":
-	app.run()
+	app.run(host="0.0.0.0")
 
